@@ -8,7 +8,8 @@
 </head>
 
 <body>
-  <form action="{% url 'listagem_usarios'%}" method="post">
+  <form action="{% url 'listagem_usuarios'%}" method="post">
+    {% csrf_token %}
     <div class="container">
       <h1>Cadatro de Usuários</h1>
       Nome:<input type="text" name="nome">
