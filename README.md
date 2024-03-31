@@ -5,9 +5,10 @@ Vídeo original: [DJANGO - Como criar um sistema de cadastro do zero!](https://y
 # Índece
 
 1. [Conceito básico](#01-basico)
+2. [Gerando Banco de Dados](#02-bancodados)
 
 
-<div id="Básico" />
+<div id="01-basico" />
 
 ## Conceito Básico
 
@@ -49,5 +50,65 @@ Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
 
 4. Criar o arquivo da página que será exibida dentro da pasta `app/templates/usuario/home.html`. obs: sempre crie sub pastas dentro da pasta templates para separar as diferentes partes do seu app.
 
+<div id="02-bancodados"/>
 
+## Gerando Banco de Dados
+
+1. Primeiro vamos criar a classe dentro do arquivo `app/models.py`
+    ```python
+    class Usuario(models.Model):
+        id_usuario = models.AutoField(primary_key=True)
+        nome = models.TextField(max_length=255)
+        idade = models.IntegerField()
+    ```
+
+2. Para gerar o modelo no banco de dados usamos:
+    ```bash
+    $ python manage.py migrations
+
+    $ python manage.py migrate
+    ```
+    Assim teremos a tabela de usuários no banco de dados.
+
+3. Receber as informações dos usuários nos forms, lembrar de usar o CSRF_TOKEN:
+    ```html
+    <form action="{% url 'listagem_usuarios'%}" method="post">
+        {% csrf_token %}
+        <div class="container">
+            <h1>Cadatro de Usuários</h1>
+            Nome:<input type="text" name="nome">
+            Idade:<input type="text" name="idade">
+            <button type="">Enviar</button>
+        </div>
+    </form>
+    ```
+
+4. Para adicionar um registro no banco de dados:
+    ```python
+    def listagem_usuarios(request):
+        # Instancia da classe usuario
+        novo_usuario = Usuario()
+        # Recebe as informações do post
+        novo_usuario.nome = request.POST.get('nome')
+        novo_usuario.idade = request.POST.get('idade')
+        # Salva o registro no banco de dados
+        novo_usuario.save()
+        # Cria variavel usuarios com todos os registros
+        usuarios = {
+            'usuarios': Usuario.objects.all()
+        }
+        # Renderiza a página passando 'usuarios' como variavel
+        return render(request, 'usuarios/usuarios.html', usuarios)
+    ```
+
+5. Para exibir as informações na página usuamos:
+    ```html
+    {% for usuario in usuarios %}
+    <tr>
+        <td>{{usuario.id_usuario}}</td>
+        <td>{{usuario.nome}}</td>
+        <td>{{usuario.idade}}</td>
+    </tr>
+    {% endfor %}
+    ```
 

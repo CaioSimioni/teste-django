@@ -1,3 +1,6 @@
+{% extends 'usuarios/base.html' %}
+{% block extra_content %}
+
 <div class="container">
     <table>
         <tr>
@@ -5,7 +8,7 @@
             <th>nome</th>
             <th>idade</th>
         </tr>
-        {%  for usuario in usuarios %}
+        {% for usuario in usuarios %}
         <tr>
             <td>{{usuario.id_usuario}}</td>
             <td>{{usuario.nome}}</td>
@@ -14,3 +17,4 @@
         {% endfor %}
     </table>
 </div>
+{% endblock %}

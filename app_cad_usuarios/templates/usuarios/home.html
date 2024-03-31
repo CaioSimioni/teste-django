@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% extends 'usuarios/base.html' %}
+{% block extra_content %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Usuario</title>
-</head>
-
-<body>
-  <form action="{% url 'listagem_usuarios'%}" method="post">
-    {% csrf_token %}
-    <div class="container">
-      <h1>Cadatro de Usuários</h1>
-      Nome:<input type="text" name="nome">
-      Idade:<input type="text" name="idade">
-      <button type="">Enviar</button>
-    </div>
-  </form>
-
-</body>
-
-</html>
+<form action="{% url 'listagem_usuarios'%}" method="post">
+  {% csrf_token %}
+  <div class="container">
+    <h1>Cadatro de Usuários</h1>
+    Nome:<input type="text" name="nome">
+    Idade:<input type="text" name="idade">
+    <button type="">Enviar</button>
+  </div>
+</form>
+{% endblock %}
