@@ -48,3 +48,6 @@ Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
     ```
 
 4. Criar o arquivo da página que será exibida dentro da pasta `app/templates/usuario/home.html`. obs: sempre crie sub pastas dentro da pasta templates para separar as diferentes partes do seu app.
+
+
+
