@@ -1,14 +1,25 @@
 # Projeto de Cadastro de Usuários
 
-Vídeo original: [DJANGO - Como criar um sistema de cadastro do zero!](https://youtu.be/-m5ywU8SW9E?si=oQPDXJPUFNoZpR6U)
+
 
 # Índece
 
-1. [Conceito básico](#01-basico)
-2. [Gerando Banco de Dados](#02-bancodados)
+1. [Instalação do Django](#instalacao)
+2. [Conceito básico](#basico)
+3. [Gerando Banco de Dados/Migrations](#bancodados)
+4. [To-do list](#todo)
+5. [Referências](#referencias)
+
+<div id="instalacao"/>
+
+## Instalação do Django
+
+1. Requisitos
+2. Criando projeto
+3. Utilizando variáveis de ambiente
 
 
-<div id="01-basico" />
+<div id="basico" />
 
 ## Conceito Básico
 
@@ -50,9 +61,9 @@ Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
 
 4. Criar o arquivo da página que será exibida dentro da pasta `app/templates/usuario/home.html`. obs: sempre crie sub pastas dentro da pasta templates para separar as diferentes partes do seu app.
 
-<div id="02-bancodados"/>
+<div id="bancodados"/>
 
-## Gerando Banco de Dados
+## Gerando Banco de Dados/Migrations
 
 1. Primeiro vamos criar a classe dentro do arquivo `app/models.py`
     ```python
@@ -112,3 +123,18 @@ Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
     {% endfor %}
     ```
 
+<div id="todo" />
+
+## To-do list
+
+- [x] Subir o projeto com o mínimo funcionando.
+- [ ] Aprender a utilizar .env para Desenvolvimento/Produção.
+- [ ] Alterar o Banco de Dados para MySQL.
+- [ ] Encontrar uma melhor forma de estilar as páginas.
+- [ ] Implementar os códigos no projeto integrador da faculdade. 
+
+<div id="referencias"/>
+
+## Referências
+
+[DJANGO - Como criar um sistema de cadastro do zero!](https://youtu.be/-m5ywU8SW9E?si=oQPDXJPUFNoZpR6U)
