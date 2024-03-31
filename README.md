@@ -137,5 +137,5 @@ Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
 
 ## Referências
 
-[Documentação do DJANGO](https://docs.djangoproject.com/pt-br/5.0/)
+[Documentação do DJANGO](https://docs.djangoproject.com/pt-br/5.0/)<br>
 [DJANGO - Como criar um sistema de cadastro do zero!](https://youtu.be/-m5ywU8SW9E?si=oQPDXJPUFNoZpR6U)
