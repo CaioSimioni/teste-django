@@ -15,9 +15,53 @@
 ## Instalação do Django
 
 1. Requisitos
-2. Criando projeto
-3. Utilizando variáveis de ambiente
 
+    - Python -> `$ sudo pacman -S python`
+    - Django -> `$ pip install Django`
+
+2. Criando projeto
+
+    - `$ django-admin startproject mysite`
+
+3. Iniciar servidor
+
+    - `$ python manage.py runserver`
+
+4. Utilizando variáveis de ambiente
+
+    - Instalação do python-dotenv
+        
+        `$ pip install python-dotenv`
+
+    - No arquivo `/projeto/settings.py` vamos adicionar as seguintes linhas:
+
+        ```python
+        from dotenv import load_dotenv
+        import os
+
+        load_dotenv()
+        SECRET_KEY = os.getenv("SECRET_KEY") # Salve o antigo valor que estava nesse campo.
+        ```
+
+    - Vamos criar o arquivo `.env` na raiz do projeto, ao lado do `manage.py`, e colocar o valor que estava no campo SECRET_KEY e passar para o `.env`:
+
+        ```
+        SECRET_KEY = <Valor do SECRET_KEY>
+        ```
+
+5. Agora, antes de salvar o projeto e fazer a primeira commit, crie um arquivo `.gitignore` na raiz do projeto e cole o seguinte código:
+
+    ```.gitignore
+    
+    .git
+    .env  # Essa é a linhas mais importante de todas, mas também cole o restante.
+
+    db.sqlite3
+
+    __pycache__
+    migrations
+
+    ```
 
 <div id="basico" />
 
@@ -25,7 +69,12 @@
 
 Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
 
-1. Garantir que o `app` que criamos está adicionado ao projeto:
+1. Criar nosso primeiro `app` dentro do nosso projeto:
+
+    `$ python manage.py startapp app`
+
+2. Garantir que o `app` que criamos está adicionado ao projeto:
+
     Vamos no arquivo `projeto/settings.py` e adicionar o `app` aos aplicativos instalados.
     ```python
     ...
@@ -43,7 +92,7 @@ Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
     ...
     ```
 
-2. Criar o rota para a página no arquivo `projeto/url.py` com o comando:
+3. Criar o rota para a página no arquivo `projeto/url.py` com o comando:
     ```python
     from django.urls import path
     from app import views  # Importar o arquivo views do meu app
@@ -53,19 +102,20 @@ Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
     ]
     ```
 
-3. Criar a função responsável pela renderização da página no arquivo `app/views.py`, como no exemplo:
+4. Criar a função responsável pela renderização da página no arquivo `app/views.py`, como no exemplo:
     ```python
     def home(request):
         return render(request, 'usuarios/home.hmtl')
     ```
 
-4. Criar o arquivo da página que será exibida dentro da pasta `app/templates/usuario/home.html`. obs: sempre crie sub pastas dentro da pasta templates para separar as diferentes partes do seu app.
+5. Criar o arquivo da página que será exibida dentro da pasta `app/templates/usuario/home.html`. obs: sempre crie sub pastas dentro da pasta templates para separar as diferentes partes do seu app.
 
 <div id="bancodados"/>
 
 ## Gerando Banco de Dados/Migrations
 
 1. Primeiro vamos criar a classe dentro do arquivo `app/models.py`
+
     ```python
     class Usuario(models.Model):
         id_usuario = models.AutoField(primary_key=True)
@@ -74,14 +124,17 @@ Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
     ```
 
 2. Para gerar o modelo no banco de dados usamos:
+
     ```bash
     $ python manage.py migrations
 
     $ python manage.py migrate
     ```
+
     Assim teremos a tabela de usuários no banco de dados.
 
 3. Receber as informações dos usuários nos forms, lembrar de usar o CSRF_TOKEN:
+
     ```html
     <form action="{% url 'listagem_usuarios'%}" method="post">
         {% csrf_token %}
@@ -95,6 +148,7 @@ Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
     ```
 
 4. Para adicionar um registro no banco de dados:
+
     ```python
     def listagem_usuarios(request):
         # Instancia da classe usuario
@@ -113,6 +167,7 @@ Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
     ```
 
 5. Para exibir as informações na página usuamos:
+
     ```html
     {% for usuario in usuarios %}
     <tr>
