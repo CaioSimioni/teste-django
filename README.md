@@ -212,8 +212,8 @@ Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
 ## To-do list
 
 - [x] Subir o projeto com o mínimo funcionando.
-- [ ] Aprender a utilizar .env para Desenvolvimento/Produção.
-- [ ] Alterar o Banco de Dados para MySQL.
+- [x] Aprender a utilizar .env para Desenvolvimento/Produção.
+- [x] Alterar o Banco de Dados para MySQL.
 - [ ] Encontrar uma melhor forma de estilar as páginas.
 - [ ] Implementar os códigos no projeto integrador da faculdade. 
 
