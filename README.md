@@ -7,6 +7,7 @@
 1. [Instalação do Django](#instalacao)
 2. [Conceito básico](#basico)
 3. [Gerando Banco de Dados/Migrations](#bancodados)
+4. [Usando MySQL no Django](#mysql)
 4. [To-do list](#todo)
 5. [Referências](#referencias)
 
@@ -177,6 +178,34 @@ Sempre que criamos uma nova página Web precisamos seguir os seguintes passos:
     </tr>
     {% endfor %}
     ```
+
+<div id="mysql">
+
+## Usando MySQL no Django
+
+1. Requisitos:
+
+    `$ pip install mysqlclient`
+
+2. Alterar o arquivo `settings.py`:
+
+    ```python
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.getenv("DB_NAME"),
+            'USER': os.getenv("DB_USER"),
+            'PASSWORD': os.getenv("DB_PASS"),
+            'HOST': os.getenv("DB_HOST"),
+            'PORT': os.getenv("DB_PORT")
+        }
+    }
+    ```
+
+3. Aplicar as alterações no projeto: 
+
+    `$ python manage.py migrate`
+
 
 <div id="todo" />
 
